@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html>
+<head>
+<!--<template name = "options">-->
+<h1>MIT pressure survey visualization</h1>
+<div>
+    <div class="happiness">"Red: I am happier than the average MIT student."</div>
+    <div class="extroversion">"Green: Are you extroverted?"</div>
+    <div class="balance">"Blue: I strike a good balance between my personal life and work."</div>
+<!--    makes a drop down menu-->
+    <div id="sort">Sort by:</div>
+    <select id="sortSelector">
+        <option value = "alphabetical">Alphabetical</option>
+        <option value="happiness">Happiness</option>
+        <option value="extroversion">Extroversion</option>
+        <option value="balance">Balance</option>
+    </select>
+    <button id="sortButton">Sort</button>
+
+
+</div>
+
+    
+<style>
+
+
+.title {
+    fill: black;
+    font: 20px;
+}    
+    
+.percent {
+  fill: white;
+  font: 15px sans-serif;
+}
+
+
+    
+.happiness {
+    fill: red;
+    color: red;
+}
+    
+.extroversion {
+    fill: green;
+    color: green;
+}
+    
+.balance {
+    fill: blue;
+    color: blue;
+}
+    
+    
+}
+</style>
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script src="http://d3js.org/d3.v3.min.js"></script>
+
+<script>
+
+// http://tech.mit.edu/V132/N59/pressure/breakdown/residence/index.htm
+//
+// Percentage of YES answers for each dorm
+// - happierThanAvg: "I am happier than the average MIT student."
+// - extroverted: "Are you extroverted?"
+// - workLifeBalance: "I strike a good balance between my personal life and work."
+var mitPressureSurvey = [
+{dorm: 'Baker House', happierThanAvg: 49, extroverted: 44, workLifeBalance: 54},
+{dorm: 'Bexley Hall', happierThanAvg: 36, extroverted: 41, workLifeBalance: 38},
+{dorm: 'Burton Connor', happierThanAvg: 50, extroverted: 39, workLifeBalance: 43},
+{dorm: 'East Campus', happierThanAvg: 46, extroverted: 31, workLifeBalance: 46},
+{dorm: 'MacGregor House', happierThanAvg: 42, extroverted: 25, workLifeBalance: 49},
+{dorm: 'Maseeh Hall', happierThanAvg: 45, extroverted: 38, workLifeBalance: 43},
+{dorm: 'McCormick Hall', happierThanAvg: 46, extroverted: 32, workLifeBalance: 47},
+{dorm: 'New House', happierThanAvg: 41, extroverted: 24, workLifeBalance: 48},
+{dorm: 'Next House', happierThanAvg: 35, extroverted: 18, workLifeBalance: 45},
+{dorm: 'Random Hall', happierThanAvg: 47, extroverted: 29, workLifeBalance: 37},
+{dorm: 'Senior House', happierThanAvg: 38, extroverted: 29, workLifeBalance: 38},
+{dorm: 'Simmons Hall', happierThanAvg: 41, extroverted: 22, workLifeBalance: 49},
+{dorm: 'Fraternities', happierThanAvg: 54, extroverted: 40, workLifeBalance: 54},
+{dorm: 'Sororities', happierThanAvg: 56, extroverted: 52, workLifeBalance: 45},
+{dorm: 'ILGs', happierThanAvg: 63, extroverted: 22, workLifeBalance: 33},
+{dorm: 'Off Campus', happierThanAvg: 46, extroverted: 37, workLifeBalance: 41},
+{dorm: 'Ashdown House', happierThanAvg: 37, extroverted: 25, workLifeBalance: 34},
+{dorm: 'Edgerton House', happierThanAvg: 40, extroverted: 21, workLifeBalance: 47},
+{dorm: 'Sidney-Pacific', happierThanAvg: 42, extroverted: 31, workLifeBalance: 33},
+{dorm: 'Tang Hall', happierThanAvg: 34, extroverted: 26, workLifeBalance: 33},
+{dorm: 'The Warehouse', happierThanAvg: 50, extroverted: 47, workLifeBalance: 41},
+{dorm: 'Eastgate', happierThanAvg: 56, extroverted: 30, workLifeBalance: 51},
+{dorm: 'Westgate', happierThanAvg: 43, extroverted: 30, workLifeBalance: 43}
+]
+
+//Template.options.events({
+//    'click #sortButton': function () {            
+//        if ('#sort'.value = "happiness"){
+//            mitPressureSurvey.sort(function(a,b) {
+//            return parseFloat(a.happierThanAvg+a.workLifeBalance) - parseFloat(+b.happierThanAvg+b.workLifeBalance)    
+//        });}
+//    },
+//       
+//  });
+
+
+
+var width = 420
+var barHeight = 40;
+
+// utility function that maps [0 to 100] to [0, width]
+// draw this on the board as a map of two lines
+var scaleFunction = d3.scale.linear().domain([0, 100]).range([0, width]);
+
+function makeChart(chart){
+
+    var binding = chart.selectAll("g").data(mitPressureSurvey, function(d){return d.dorm});
+    var bar = binding.enter()
+            .append("g")
+            .attr("transform", function(d, i){
+                return "translate(0, " + (3*i*barHeight) + ")";
+            })
+    
+    //creates three bars per dorm, with spacing for the dorm title
+    bar.append("rect")
+        .attr("width", function(d) {return scaleFunction(d.happierThanAvg);})
+        .attr("height", barHeight - 15)
+        .attr("class", "happiness")
+        .attr("y", 20)
+    bar.append("rect")
+        .attr("width", function(d) {return scaleFunction(d.extroverted);})
+        .attr("height", barHeight - 15)
+        .attr("class", "extroversion")
+        .attr("y", barHeight+5)
+    bar.append("rect")
+        .attr("width", function(d) {return scaleFunction(d.workLifeBalance);})
+        .attr("height", barHeight - 15)
+        .attr("y", 2*barHeight -10)
+        .attr("class", "balance")
+    
+    // titles the dorms
+    bar.append("text")
+        .attr("x", 3)
+        .attr("y", barHeight / 2 -5)
+        .text(function(d) {return d.dorm;})
+        .attr("class", "title")
+    
+    // creates labels for the percentages for all 3 bar types
+    bar.append("text")
+        .attr("x", 3)
+        .attr("y", barHeight / 2 +20)
+        .text(function(d) {return d.happierThanAvg + "%";})
+        .attr("class", "percent")
+    
+    bar.append("text")
+        .attr("x", 3)
+        .attr("y", 3*barHeight / 2 +5)
+        .text(function(d) {return d.extroverted + "%";})
+        .attr("class", "percent");
+    
+    bar.append("text")
+        .attr("x", 3)
+        .attr("y", 5*barHeight / 2 -10)
+        .text(function(d) {return d.workLifeBalance + "%";})
+        .attr("class", "percent");
+    
+    
+    
+}
+
+// jQuery magic to run this code after your page loads
+$(function() {
+    var chart = d3.select("#d3chart")
+            .attr("width", width)
+            .attr("height", 3 * barHeight * mitPressureSurvey.length);
+    
+    makeChart(chart);
+    // if the sort button is clicked, sort the dorms based on a particular method
+    $("#sortButton").click(function(){
+        if ($('#sortSelector').value() == "alphabetical"){
+            mitPressureSurvey.sort(function(a,b) {
+            return parseFloat(a.dorm) - parseFloat(+b.dorm) 
+            
+        });}
+        else if ($('#sort').value() = "happiness"){
+            mitPressureSurvey.sort(function(a,b) {
+            return parseFloat(a.happierThanAvg) - parseFloat(+b.happierThanAvg) 
+            
+        });}
+        else if ('#sort'.value = "extroversion"){
+            mitPressureSurvey.sort(function(a,b) {
+            return parseFloat(a.extroverted) - parseFloat(+b.extroverted) 
+            
+        });}
+        else if ('#sort'.value = "balance"){
+            mitPressureSurvey.sort(function(a,b) {
+            return parseFloat(a.workLifeBalance) - parseFloat(+b.workLifeBalance) 
+            
+        });}
+        makeChart(chart);
+
+    })
+});
+
+</script>
+<!--</template>-->
+</head>
+    
+
+<body>
+
+
+
+<svg class="chart" id="d3chart"></svg>
+
+</body>
+
+</html>
