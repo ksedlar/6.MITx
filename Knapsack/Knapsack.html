@@ -1,0 +1,66 @@
+
+<html>
+<head>
+<title>Knapsack Problem</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+<script src="Knapsack.js"></script>
+<link rel="stylesheet" type="text/css" href="Knapsack.css">
+</head>
+<body>
+<!--
+<h2 style="text-align:center; margin-top:10px">The Burglar's Dilema</h2>
+
+<p><center>
+<img src="house.png" width="400"><img src="burglar.png" width="200">
+</center>
+
+<p>Being a burglar isn't easy!  Our friend above has just entered a
+house and is trying to decide what to take.  Unfortunately his
+knapsack only holds <b>20kg</b>.  What strategy should he use in picking
+objects so as to maximize the value of his haul?
+
+<p>Let's try out three possible strategies.  Considering the items
+remaining in the house that will still fit in the knapsack, the
+burglar selects the item based on
+
+<ol>
+<li>"Max Value" -- choose the item with the greatest value</li>
+<li>"Min Weight" -- choose the item with the least weight</li>
+<li>"Max Value/Weight" -- choose the item with the largest value-to-weight ratio</li>
+</ol>
+
+<p>Try out each strategy using the simulation below and record the
+total value of all the items in the knapsack.
+-->
+<div>
+    <div class="interfaceHalf">
+        <img class="headImage" src="house.png">
+        <div class="location">
+            <span class="item" data-value="175" data-weight="10" data-name="clock" >      
+            </span>
+            <span class="item" data-value="90" data-weight="9" data-name="painting">
+            </span>
+            <span class="item" data-value="20" data-weight="4" data-name="radio">
+            </span>
+            <span class="item" data-value="50" data-weight="2" data-name="vase">
+            </span>
+            <span class="item" data-value="10" data-weight="1" data-name="book">
+            </span>
+            <span class="item" data-value="200" data-weight="20" data-name="computer">
+            </span>
+        </div>
+        <div class="clickInfo">Click item to move to knapsack</div>
+
+    </div>
+    <div class="interfaceHalf">
+        <img class="headImage" src="burglar.png">
+        <div id="knapsackStatus">($ , kg)</div>
+        <div class="location">
+
+        </div>
+        <div class="clickInfo">Click item to move to house</div>
+    </div>   
+</div>
+
+</body>
+</html>
