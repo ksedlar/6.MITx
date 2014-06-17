@@ -5,20 +5,21 @@
     
 }
 
-.location span {
-    width: 100px;
-    
-}
-
-.location txt {
-    font: 10px;
-}
 
 /*Images on top of the locations*/
 .headImage {
     height: 100px;
-    float: left;
 
+}
+
+/*
+#group {
+    
+}
+*/
+
+.clickInfo {
+    text-align: center;
 }
 
 /*The two locations where items can be*/
@@ -26,16 +27,21 @@
     border: 1px solid black;
     height: 300px;
     width: 300px;
+    float: left;
 
 }
 
-div {
+.item {
+    width:100px;
     float: left;
-    text-align: center;
+    
 }
 
 .interfaceHalf {
     width: 325px;
+    text-align: center;
+    float: left;
+    
 
 }
 

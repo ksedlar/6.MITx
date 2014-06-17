@@ -8,6 +8,14 @@
 </head>
 <body>
 <!--
+<div id="outer" style="width:100%">  
+    ASDFASDF
+    <div id="inner">Foo foo</div>
+    JKL:
+</div>
+-->
+    
+<!--
 <h2 style="text-align:center; margin-top:10px">The Burglar's Dilema</h2>
 
 <p><center>
@@ -35,27 +43,30 @@ total value of all the items in the knapsack.
 <div>
     <div class="interfaceHalf">
         <img class="headImage" src="house.png">
-        <div class="location">
-            <span class="item" data-value="175" data-weight="10" data-name="clock" >      
-            </span>
-            <span class="item" data-value="90" data-weight="9" data-name="painting">
-            </span>
-            <span class="item" data-value="20" data-weight="4" data-name="radio">
-            </span>
-            <span class="item" data-value="50" data-weight="2" data-name="vase">
-            </span>
-            <span class="item" data-value="10" data-weight="1" data-name="book">
-            </span>
-            <span class="item" data-value="200" data-weight="20" data-name="computer">
-            </span>
+        <div class="location" id="house">
+            <div class="item" data-value="175" data-weight="10" data-name="clock">      
+            </div>
+            <div class="item" data-value="90" data-weight="9" data-name="painting">
+            </div>
+            <div class="item" data-value="20" data-weight="4" data-name="radio">
+            </div>
+            <div class="item" data-value="50" data-weight="2" data-name="vase">
+            </div>
+            <div class="item" data-value="10" data-weight="1" data-name="book">
+            </div>
+            <div class="item" data-value="200" data-weight="20" data-name="computer">
+            </div>
         </div>
         <div class="clickInfo">Click item to move to knapsack</div>
 
     </div>
     <div class="interfaceHalf">
-        <img class="headImage" src="burglar.png">
-        <div id="knapsackStatus">($ , kg)</div>
-        <div class="location">
+        
+        <div id = "group">
+            <img class="headImage" src="burglar.png">
+            <div id="knapsackStatus">($ , kg)</div>
+        </div>
+        <div class="location" id="sack">
 
         </div>
         <div class="clickInfo">Click item to move to house</div>
