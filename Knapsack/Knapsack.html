@@ -2,18 +2,11 @@
 <html>
 <head>
 <title>Knapsack Problem</title>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
 <script src="Knapsack.js"></script>
 <link rel="stylesheet" type="text/css" href="Knapsack.css">
 </head>
 <body>
-<!--
-<div id="outer" style="width:100%">  
-    ASDFASDF
-    <div id="inner">Foo foo</div>
-    JKL:
-</div>
--->
     
 <!--
 <h2 style="text-align:center; margin-top:10px">The Burglar's Dilema</h2>
@@ -40,38 +33,31 @@ burglar selects the item based on
 <p>Try out each strategy using the simulation below and record the
 total value of all the items in the knapsack.
 -->
-<div>
-    <div class="interfaceHalf">
-        <img class="headImage" src="house.png">
-        <div class="location" id="house">
-            <div class="item" data-value="175" data-weight="10" data-name="clock">      
-            </div>
-            <div class="item" data-value="90" data-weight="9" data-name="painting">
-            </div>
-            <div class="item" data-value="20" data-weight="4" data-name="radio">
-            </div>
-            <div class="item" data-value="50" data-weight="2" data-name="vase">
-            </div>
-            <div class="item" data-value="10" data-weight="1" data-name="book">
-            </div>
-            <div class="item" data-value="200" data-weight="20" data-name="computer">
-            </div>
+<div id = "interface">
+    <div class = "interfaceHalf">
+        <img class = "headImage" src = "house.png">
+        <div class = "location" id = "house">
         </div>
-        <div class="clickInfo">Click item to move to knapsack</div>
-
+        <div class = "clickInfo">Click item to move to knapsack</div>
     </div>
-    <div class="interfaceHalf">
+    <div class = "interfaceHalf">
         
         <div id = "group">
-            <img class="headImage" src="burglar.png">
-            <div id="knapsackStatus">($ , kg)</div>
+            <img id = "burglar" class = "headImage" src = "burglar.png">
+            <img id = "wagon" class = "headImage" src = "wagon.png">
+            <div id = "knapsackStatus" data-value = 0 data-weight = 0></div>
         </div>
-        <div class="location" id="sack">
-
+        <div class = "location" id = "sack">
         </div>
-        <div class="clickInfo">Click item to move to house</div>
-    </div>   
+        <div class = "clickInfo">Click item to move to house</div>
+    </div>
+    <div>
+        <button class = "reButton" id = "restart">Restart</button>
+        <button class = "reButton" id = "randomize">Randomize</button>
+    </div>
+    <div id = "highscore" data-value = 0>Highscore: $0</div>
 </div>
+
 
 </body>
 </html>

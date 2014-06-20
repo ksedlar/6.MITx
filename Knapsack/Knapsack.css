@@ -1,49 +1,80 @@
-/*Images in the locations*/
-.location img {
-    height: 100px;
-    width: 100px;
-    
+/*The div surrounding the interface halves*/
+#interface {
+    width: 700px;
+    text-align: center;
 }
-
-
+/*A half of the interface corresponding to either house or knapsack*/
+.interfaceHalf {
+    width: 330px;
+    text-align: center;
+    float: left;
+    margin: 10px;
+}
 /*Images on top of the locations*/
 .headImage {
     height: 100px;
-
+    margin-bottom: 20px;
 }
-
-/*
+/*A div consisting of burglar and knapsackStatus*/
 #group {
-    
+    width: 300px;
+    float: left;
 }
-*/
-
-.clickInfo {
-    text-align: center;
+/*The image of the burglar above the knapsack location*/
+#burglar {
+    float:left;
 }
+/*The image of the wagon next to the burglar*/
+#wagon {
+    float:left;
+}
+/*The text displaying the value and weight of the contents of the knapsack*/
+#knapsackStatus {
+    font-size: 15pt;
+    height: 100px;
+    line-height: 100px;
 
+}
 /*The two locations where items can be*/
 .location {
     border: 1px solid black;
-    height: 300px;
-    width: 300px;
+    height: 400px;
+    width: 330px;
     float: left;
 
 }
-
+/*The divs of an item image and the text beneath it*/
 .item {
     width:100px;
     float: left;
-    
+    margin: 5px;
+}
+/*The item images*/
+.item img {
+    height: 100px;
+    width: 100px;    
 }
 
-.interfaceHalf {
-    width: 325px;
+/*The text at the bottom of the location boxes*/
+.clickInfo {
     text-align: center;
-    float: left;
-    
-
 }
-
+/*The alert that hops up when the knapsack is too heavy*/
+.alert {
+    position: absolute;
+    font-size: 30pt;
+    background-color: yellow;
+    left: 40px;
+    top: 200px;
+}
+/*Button for restarting the position of the items*/
+.reButton {
+    height: 50px;
+    width: 100px;
+}
+/*The label showing the user's high score*/
+#highscore {
+    font-size: 20pt;
+}
 
 
